@@ -38,9 +38,12 @@
           sourceTreeUrl = input.defaultValue;
         }
       }
+      var branchDetails = document.getElementById('branch-select-menu');
+      var branch = branchDetails.children[0].children[1].textContent;
       // Check we found it before we try to use it!
-      if (sourceTreeUrl.length > 0) {
+      if (sourceTreeUrl.length > 0 && branch.length > 0) {
         console.log('Sourcetree URL: ' + sourceTreeUrl);
+        console.log('Branch: ' + branch)
 
         // Grab the buttons section at the bottom of the modal window to add our new button
         var buttonLayout = repoModal.getElementsByClassName("list-style-none")[0];
@@ -66,7 +69,7 @@
         // Set the button text
         cloneToSourceTreeButtonLink.innerHTML = svgIcon + " Open in Sourcetree";
         // Set it's link to open the SourceTree URL in SourceTree
-        cloneToSourceTreeButtonLink.setAttribute('href', "sourcetree://cloneRepo?cloneUrl=" + sourceTreeUrl + "&type=github");
+        cloneToSourceTreeButtonLink.setAttribute('href', "sourcetree://checkoutRef?ref=refs/heads/" + branch + "&cloneUrl=" + sourceTreeUrl + "&type=github");
         // Add our link to our list entry
         cloneToSourceTreeButton.appendChild(cloneToSourceTreeButtonLink);
 
