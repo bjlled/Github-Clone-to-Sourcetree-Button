@@ -39,7 +39,10 @@
         }
       }
       var branchDetails = document.getElementById('branch-select-menu');
-      var branch = branchDetails.children[0].getAttribute("title");
+      var branch = branchDetails.children[0].children[1].textContent;
+      if (branch.slice(-1) == "…") {
+        branch = branchDetails.children[0].getAttribute("title");
+      }
       // Check we found it before we try to use it!
       if (sourceTreeUrl.length > 0 && branch.length > 0) {
         console.log('Sourcetree URL: ' + sourceTreeUrl);
